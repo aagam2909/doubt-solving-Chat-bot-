@@ -9,12 +9,16 @@ import org.springframework.stereotype.Service;
 import com.doubtsolver.dto.BotDto;
 import com.doubtsolver.model.Bot;
 import com.doubtsolver.repository.BotRepository;
+import com.doubtsolver.repository.LlmConfigRepository;
 
 @Service
 public class BotService {
 	
 	@Autowired
 	private BotRepository botRepository;
+	
+	@Autowired
+	private LlmConfigRepository llmConfigRepository;
 	
 	
 	public Bot addBot(BotDto botDto) throws Exception {
@@ -38,8 +42,9 @@ public class BotService {
 		return botRepository.findAll();
 	}
 	
-	public String deleteBot(String name) {
-		botRepository.deleteById(name);
+	public String deleteBot(String botId) {
+		botRepository.deleteById(botId);
+		llmConfigRepository.deleteById(botId);
 		return "bot deleted successfully";
 	}
 	
