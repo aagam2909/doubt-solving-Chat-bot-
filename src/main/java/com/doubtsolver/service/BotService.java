@@ -10,6 +10,7 @@ import com.doubtsolver.dto.BotDto;
 import com.doubtsolver.model.Bot;
 import com.doubtsolver.repository.BotRepository;
 import com.doubtsolver.repository.LlmConfigRepository;
+import com.doubtsolver.repository.VectorDocumentsRepository;
 
 @Service
 public class BotService {
@@ -19,6 +20,9 @@ public class BotService {
 	
 	@Autowired
 	private LlmConfigRepository llmConfigRepository;
+	
+	@Autowired
+	private VectorDocumentsRepository vectorDocumentsRepository;
 	
 	
 	public Bot addBot(BotDto botDto) throws Exception {
@@ -45,6 +49,7 @@ public class BotService {
 	public String deleteBot(String botId) {
 		botRepository.deleteById(botId);
 		llmConfigRepository.deleteById(botId);
+		vectorDocumentsRepository.deleteByBotId(botId);
 		return "bot deleted successfully";
 	}
 	

@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Document("kb")
+@Document("llmConfig")
 public class LlmConfig {
 	
 	@Id
