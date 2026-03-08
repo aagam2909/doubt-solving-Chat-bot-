@@ -1,9 +1,12 @@
 package com.doubtsolver.model;
 
+import java.util.List;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import com.doubtsolver.dto.BotDto;
+import com.doubtsolver.model.helper.Qna;
+import com.fasterxml.jackson.core.io.schubfach.DoubleToDecimal;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,23 +15,14 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Document("bots")
-public class Bot {
+@Document("kb")
+public class LlmConfig {
 	
 	@Id
 	private String botId;
-	private String name;
-	private String description;
-	private String displayName;
-	
-	
-	public Bot(BotDto botDto) {
-		this.name=botDto.getName();
-		this.description=botDto.getDescription();
-		this.displayName = botDto.getDisplayName();
-	}
-	
-	
+	private String systemPrompt;
+	private double temperature;
+	private String model;
 	
 
 }
